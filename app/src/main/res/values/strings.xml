@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">bookrenral</string>
+    <string name="rental">レンタル</string>
+    <string name="addBook">追加</string>
+    <string name="rentalBookMenu">本の貸し出し</string>
+    <string name="addBookMenu">本の新規登録を行う</string>
+    <string name="searchBook">検索</string>
+    <string name="addBookBtn">登録</string>
+    <string name="tvISBNCode">ISBNコードを入力</string>
+    <string name="tvCaution">本の裏表紙のバーコード の内、9784\nから始まるコードを入力してください。</string>
+    <string name="tv_insert">登録</string>
+    <string name="tv_insert_book">この本を登録しますか。</string>
+    <string name="tv_inserted">登録しました</string>
+    <string name="tv_yes">OK</string>
+    <string name="tv_rentaled">レンタルしました。</string>
+    <string name="tv_return">返却しました。</string>
+    <string name="book_rental">貸出中</string>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_horizontal"
+        android:text="@string/rentalBookMenu"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/searchBook"
+        android:background="@color/Asaginezu"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:dividerHeight="1dp"
+        android:fillViewport="true"
+        >
+        <ListView
+            android:id="@+id/bookStock"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:dividerHeight="1dp" />
+
+    </ScrollView>
+    <!-- メインで表示されるレイアウト -->
+
+
+
+    <!-- 下メニュー -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/rentalBook"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bookrental"
+            app:bootstrapBrand="secondary"
+            android:text="@string/rental"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/addBook"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/pluscreate"
+            app:bootstrapBrand="secondary"
+            android:text="@string/addBook"
+            />
+    </LinearLayout>
+    <!-- 画面下部に固定で表示されるレイアウト -->
+</LinearLayout>
