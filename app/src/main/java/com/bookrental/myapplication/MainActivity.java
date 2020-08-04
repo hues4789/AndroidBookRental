@@ -144,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         String[] from = {"title","rentalFlg"};
-        int [] to = {android.R.id.text1,android.R.id.text2};
+        int [] to = {R.id.row_textview1,R.id.row_textview2};
 
-        SimpleAdapter adapter = new SimpleAdapter(this,showBooks,android.R.layout.simple_list_item_2,from,to){
+        SimpleAdapter adapter = new SimpleAdapter(this,showBooks,R.layout.row1,from,to){
           @Override
             public View getView(int position, View convertView, ViewGroup parent){
               View view = super.getView(position,convertView,parent);
