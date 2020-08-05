@@ -23,11 +23,12 @@
         />
     </LinearLayout>
     <TextView
-        android:text="@string/book_rental"
+        android:id="@+id/row_textview"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:textSize="30sp"
         android:layout_weight="0.1"
+        android:textColor="@color/offBlack"
         />
 </LinearLayout>

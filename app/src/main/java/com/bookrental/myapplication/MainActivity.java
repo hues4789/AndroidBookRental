@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
@@ -60,10 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Map<String,String> bookDesp = (Map<String, String>) parent.getItemAtPosition(position);
 
             final String title =bookDesp.get("title");
-            final String rentalFlg =bookDesp.get("rentalFlg");
+            final String rentaDate =bookDesp.get("rentalDate");
 
             //レンタル中の場合
-            if(rentalFlg.equals(getString(R.string.book_rental))) {
+            if(!rentaDate.isEmpty()) {
                 //貸し出し処理
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle(getString(R.string.tv_insert))
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Map<String,String> showBook = new HashMap<>();
 
                 String title = cursor.getString(cursor.getColumnIndex("book_title"));
+                String rentalDate = cursor.getString(cursor.getColumnIndex("rental_start_date"));
                 String rentalFlg = cursor.getString(cursor.getColumnIndex("rental_flg"));
                 titles.add(title);
 
@@ -129,9 +131,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //貸し出し中の時
                 if(rentalFlg.equals("1")) {
                     rentalFlg_pos.add(i);
-                    showBook.put("rentalFlg",getString(R.string.book_rental));
+                    showBook.put("rentalDate","貸出日:"+rentalDate);
                 }else{
-                    showBook.put("rentalFlg","");
+                    showBook.put("rentalDate","");
                 }
 
                 showBooks.add(showBook);
@@ -143,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             db.close();
         }
 
-        String[] from = {"title","rentalFlg"};
+        String[] from = {"title","rentalDate"};
         int [] to = {R.id.row_textview1,R.id.row_textview2};
 
         SimpleAdapter adapter = new SimpleAdapter(this,showBooks,R.layout.row1,from,to){
@@ -153,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
               if(rentalFlg_pos.contains(position)){
                   view.setBackgroundResource(R.color.kihada);
+                  TextView tvRental = view.findViewById(R.id.row_textview);
+                  tvRental.setText(R.string.book_rental);
               }
               return view;
           }

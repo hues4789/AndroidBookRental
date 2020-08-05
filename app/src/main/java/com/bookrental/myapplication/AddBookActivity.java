@@ -30,7 +30,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddBookActivity extends AppCompatActivity implements View.OnClickListener{
@@ -191,10 +194,17 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
 
         try{
 
-            String sqlInsert = "INSERT INTO M_BOOK(book_title)VALUES (?)";
+            String sqlInsert = "INSERT INTO M_BOOK(book_title,rental_start_date)VALUES (?,?)";
             SQLiteStatement stmt = db.compileStatement(sqlInsert);
 
+            Date date = new Date();
+
+            SimpleDateFormat sdformat = new SimpleDateFormat("yyyy/MM/dd");
+
+            String fdate = sdformat.format(date);
+
             stmt.bindString(1,title);
+            stmt.bindString(2,fdate);
 
             stmt.executeInsert();
 
