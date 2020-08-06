@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="@string/searchBook"
+        android:hint="@string/searchBook"
         android:background="@color/Asaginezu"/>
 
     <ScrollView

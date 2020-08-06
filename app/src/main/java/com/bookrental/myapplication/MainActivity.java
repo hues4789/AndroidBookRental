@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             final String title =bookDesp.get("title");
             final String rentaDate =bookDesp.get("rentalDate");
+            final String bookId = bookDesp.get("bookId");
 
             //レンタル中の場合
             if(!rentaDate.isEmpty()) {
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton(getString(R.string.tv_yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                updateReturn(title);
+                                updateReturn(bookId);
                                 showBookStock();
                             }
                         })
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setPositiveButton(getString(R.string.tv_yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                updateRentalFlg(title);
+                                updateRentalFlg(bookId);
                                 showBookStock();
                             }
 
@@ -139,9 +140,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String title = cursor.getString(cursor.getColumnIndex("book_title"));
                 String rentalDate = cursor.getString(cursor.getColumnIndex("rental_start_date"));
                 String rentalFlg = cursor.getString(cursor.getColumnIndex("rental_flg"));
+                String bookId = cursor.getString(cursor.getColumnIndex("book_id"));
                 titles.add(title);
 
                 showBook.put("title",title);
+
+                showBook.put("bookId",bookId);
 
                 //貸し出し中の時
                 if(rentalFlg.equals("1")) {
@@ -252,18 +256,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //レンタル処理
-    public void updateRentalFlg(String title){
+    public void updateRentalFlg(String bookId){
 
         DatabaseHelper helper = new DatabaseHelper(this);
 //データベース接続オブジェクトを取得
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
 
-            String sql = "UPDATE M_BOOK SET rental_flg = 1 WHERE book_title = ?";
+            String sql = "UPDATE M_BOOK SET rental_flg = 1 WHERE book_id = ?";
 
             SQLiteStatement stmt = db.compileStatement(sql);
 
-            stmt.bindString(1,title);
+            stmt.bindString(1,bookId);
 
             stmt.executeUpdateDelete();
 
@@ -283,18 +287,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //返却処理
-    public void updateReturn(String title){
+    public void updateReturn(String bookId){
 
         DatabaseHelper helper = new DatabaseHelper(this);
 //データベース接続オブジェクトを取得
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
 
-            String sql = "UPDATE M_BOOK SET rental_flg = 0 WHERE book_title = ?";
+            String sql = "UPDATE M_BOOK SET rental_flg = 0 WHERE book_id = ?";
 
             SQLiteStatement stmt = db.compileStatement(sql);
 
-            stmt.bindString(1,title);
+            stmt.bindString(1,bookId);
 
             stmt.executeUpdateDelete();
 
