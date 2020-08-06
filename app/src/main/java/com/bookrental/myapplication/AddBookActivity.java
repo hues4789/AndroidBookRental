@@ -156,6 +156,7 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
                 JSONArray rootJSON = new JSONArray(result);
                 //ルートJSON直下のJSONオブジェクトを取得
                 final String desc = rootJSON.getJSONObject(0).getJSONObject("onix").getJSONObject("DescriptiveDetail").getJSONObject("TitleDetail").getJSONObject("TitleElement").getJSONObject("TitleText").getString("content");
+                final String descKana = rootJSON.getJSONObject(0).getJSONObject("onix").getJSONObject("DescriptiveDetail").getJSONObject("TitleDetail").getJSONObject("TitleElement").getJSONObject("TitleText").getString("collationkey");
 
                 //forecasts一つ目のjsonオブジェクトからtelop文字列を取得
                 //登録成功表示
@@ -165,7 +166,7 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
                         .setPositiveButton(getString(R.string.tv_yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                CreateBookTitleButtonClick(desc);
+                                CreateBookTitleButtonClick(desc,descKana);
                             }
 
                         })
@@ -182,7 +183,7 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void CreateBookTitleButtonClick(String title){
+    public void CreateBookTitleButtonClick(String title,String titleKana){
 
         EditText ISBNInput = findViewById(R.id.etISBN);
 
@@ -194,7 +195,7 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
 
         try{
 
-            String sqlInsert = "INSERT INTO M_BOOK(book_title,rental_start_date)VALUES (?,?)";
+            String sqlInsert = "INSERT INTO M_BOOK(book_title,book_kana,rental_start_date)VALUES (?,?,?)";
             SQLiteStatement stmt = db.compileStatement(sqlInsert);
 
             Date date = new Date();
@@ -204,7 +205,9 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
             String fdate = sdformat.format(date);
 
             stmt.bindString(1,title);
-            stmt.bindString(2,fdate);
+            stmt.bindString(2,titleKana);
+            stmt.bindString(3,fdate);
+
 
             stmt.executeInsert();
 

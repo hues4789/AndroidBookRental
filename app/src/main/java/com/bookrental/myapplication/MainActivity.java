@@ -11,10 +11,12 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -48,6 +50,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RentalBook.setOnClickListener(this);
 
         addBook.setOnClickListener(this);
+
+        EditText searchWord = findViewById(R.id.searchBookStock);
+
+        searchWord.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+
+                if(keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER ){
+                    searchBookStock(textView.getText().toString());
+                }
+                return false;
+            }
+        });
 
         //登録本表示
         showBookStock();
@@ -166,6 +181,75 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    //登録本検索表示
+    public void searchBookStock(String searchWord){
+        final List<Integer> rentalFlg_pos = new ArrayList<>();
+
+        int i =0;
+        //表示リスト
+        ListView TodayTaskList = findViewById(R.id.bookStock);
+
+        DatabaseHelper helper = new DatabaseHelper(this);
+
+        List<Map<String,String>> showBooks = new ArrayList<>();
+
+//データベース接続オブジェクトを取得
+        SQLiteDatabase db = helper.getWritableDatabase();
+        List<String> titles = new ArrayList<>();
+        try {
+
+            String sql = "SELECT * FROM M_BOOK WHERE book_title like ? OR book_kana like ?";
+
+            Cursor cursor = db.rawQuery(sql,new String[]{'%' +searchWord+'%','%'+searchWord+'%'});
+
+
+            while (cursor.moveToNext()) {
+
+                Map<String,String> showBook = new HashMap<>();
+
+                String title = cursor.getString(cursor.getColumnIndex("book_title"));
+                String rentalDate = cursor.getString(cursor.getColumnIndex("rental_start_date"));
+                String rentalFlg = cursor.getString(cursor.getColumnIndex("rental_flg"));
+                titles.add(title);
+
+                showBook.put("title",title);
+
+                //貸し出し中の時
+                if(rentalFlg.equals("1")) {
+                    rentalFlg_pos.add(i);
+                    showBook.put("rentalDate","貸出日:"+rentalDate);
+                }else{
+                    showBook.put("rentalDate","");
+                }
+
+                showBooks.add(showBook);
+                i++;
+            }
+        }catch(SQLiteException e){
+            e.printStackTrace();
+        }finally{
+            db.close();
+        }
+
+        String[] from = {"title","rentalDate"};
+        int [] to = {R.id.row_textview1,R.id.row_textview2};
+
+        SimpleAdapter adapter = new SimpleAdapter(this,showBooks,R.layout.row1,from,to){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                View view = super.getView(position,convertView,parent);
+
+                if(rentalFlg_pos.contains(position)){
+                    view.setBackgroundResource(R.color.kihada);
+                    TextView tvRental = view.findViewById(R.id.row_textview);
+                    tvRental.setText(R.string.book_rental);
+                }
+                return view;
+            }
+        };
+        TodayTaskList.setAdapter(adapter);
+
+    }
 
     //レンタル処理
     public void updateRentalFlg(String title){
