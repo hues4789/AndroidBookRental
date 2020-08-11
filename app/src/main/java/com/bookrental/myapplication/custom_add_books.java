@@ -46,6 +46,16 @@ public class custom_add_books extends AppCompatActivity implements View.OnClickL
 
                 EditText BookTitleKanaInput = findViewById(R.id.etBookTitleKana);
 
+                if(BookTitleInput.getText().toString().isEmpty() || BookTitleKanaInput.getText().toString().isEmpty()) {
+                    if (BookTitleInput.getText().toString().isEmpty()) {
+                        BookTitleInput.setError("本のタイトルを入力してください.");
+                    }
+                    if (BookTitleKanaInput.getText().toString().isEmpty()) {
+                        BookTitleKanaInput.setError("タイトルカナを入力してください.");
+                    }
+                    return;
+                }
+
                 final String BookTitle = BookTitleInput.getText().toString();
 
                 final String BookTitleKana = BookTitleKanaInput.getText().toString();

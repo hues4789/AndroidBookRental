@@ -19,4 +19,5 @@
     <string name="input_book_title">本のタイトルを入力</string>
     <string name="input_book_title_kana">タイトルのフリガナを入力</string>
     <string name="hurigaba">フリガナ</string>
+    <string name="Error_BOOKTitle">本のタイトルを入力してください。</string>
 </resources>
