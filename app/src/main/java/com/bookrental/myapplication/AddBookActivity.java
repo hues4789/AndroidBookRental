@@ -11,6 +11,9 @@ import android.database.sqlite.SQLiteStatement;
 import android.net.sip.SipAudioCall;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -224,8 +227,23 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
         }finally {
             db.close();
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_options_menu_list,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int ItemId = item.getItemId();
+        switch(ItemId){
+            case R.id.custom_add_menu:
+                Intent HistoryIntent = new Intent(this,custom_add_books.class);
+                startActivity(HistoryIntent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

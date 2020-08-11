@@ -15,4 +15,8 @@
     <string name="tv_rentaled">レンタルしました。</string>
     <string name="tv_return">返却しました。</string>
     <string name="book_rental">貸出中</string>
+    <string name="addbook_cutomise">カスタマイズ登録</string>
+    <string name="input_book_title">本のタイトルを入力</string>
+    <string name="input_book_title_kana">タイトルのフリガナを入力</string>
+    <string name="hurigaba">フリガナ</string>
 </resources>

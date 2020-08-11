@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_horizontal"
+        android:text="@string/addBookMenu"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/mainGray"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input_book_title"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/etbookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input_book_title_kana"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/etBookTitleKana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hurigaba"
+            android:layout_weight="0.1"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
+        <Button
+            android:id="@+id/btSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addBookBtn"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.07"
+            android:textSize="24dp"
+            android:background="@color/btGray"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            />
+
+    </LinearLayout>
+
+    <!-- 下メニュー -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/rentalBook"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bookrental"
+            app:bootstrapBrand="secondary"
+            android:text="@string/rental"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/addBook"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/pluscreate"
+            app:bootstrapBrand="secondary"
+            android:text="@string/addBook"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

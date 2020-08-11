@@ -18,6 +18,8 @@
         android:textColor="@color/black"/>
 
     <EditText
+        android:inputType="text"
+        android:imeOptions="actionSearch"
         android:id="@+id/searchBookStock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
