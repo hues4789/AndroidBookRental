@@ -155,6 +155,14 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
             String telop = "";
 
             try {
+                if(result.equals("[null]")){
+                    //ISBN検索失敗時
+                    new AlertDialog.Builder(AddBookActivity.this)
+                            .setTitle(getString(R.string.tv_insert))
+                            .setMessage("本のタイトルを取得できませんでした。\nカスタマイズ登録から本の登録を行ってください。")
+                            .setPositiveButton(getString(R.string.tv_yes),null).show();
+                    return;
+                }
                 //JSON文字列からJSONObjectオブジェクトを生成。
                 JSONArray rootJSON = new JSONArray(result);
                 //ルートJSON直下のJSONオブジェクトを取得
