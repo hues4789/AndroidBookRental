@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bookrenral</string>
+    <string name="app_name">ブクレン</string>
     <string name="rental">レンタル</string>
     <string name="addBook">追加</string>
     <string name="rentalBookMenu">本の貸し出し</string>
@@ -20,4 +20,8 @@
     <string name="input_book_title_kana">タイトルのフリガナを入力</string>
     <string name="hurigaba">フリガナ</string>
     <string name="Error_BOOKTitle">本のタイトルを入力してください。</string>
+    <string name="searchKeyword">検索キーワード</string>
+    <string name="delete">削除</string>
+    <string name="tv_deleted">削除しました。</string>
+    <string name="tv_delete_book">本の削除</string>
 </resources>
