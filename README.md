@@ -1,9 +1,9 @@
-概要
+# 概要
 
 
 AndroidBookRental(ブクレン)は本の貸し借りを1端末で行うアプリです。
 
-アプリケーションの機能一覧(Java,SQLite)
+# アプリケーションの機能一覧(Java,SQLite)
 
 
 ・ISBN(バーコード)新規本登録(API)
