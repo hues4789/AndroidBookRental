@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<String> titles = new ArrayList<>();
         try {
 
-            String sql = "SELECT * FROM M_BOOK WHERE book_title like ? OR book_kana like ?　LIMIT 50";
+            String sql = "SELECT * FROM M_BOOK WHERE book_title like ? OR book_kana like ? LIMIT 50";
 
             Cursor cursor = db.rawQuery(sql,new String[]{'%' +searchWord+'%','%'+searchWord+'%'});
 

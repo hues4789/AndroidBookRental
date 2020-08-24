@@ -3,6 +3,7 @@ package com.bookrental.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +55,10 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
                 EditText edISBN = findViewById(R.id.etISBN);
                 bookInfoReceiver = new BooksInfoReceiver();
                 bookInfoReceiver.execute(edISBN.getText().toString());
+
+                //★★★ ソフトキーボードを隠す。
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
 
