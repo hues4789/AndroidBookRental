@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_horizontal"
-        android:text="@string/rentalBookMenu"
+        android:text="@string/tv_delete_book"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
